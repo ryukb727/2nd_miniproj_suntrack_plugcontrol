@@ -179,3 +179,162 @@
 <div id="japanese">
 
 ### 🇯🇵 Japanese Version
+
+# 🌞 太陽光追跡スマート電力制御システム
+Smart Solar Tracking & Power Control System
+
+<img width="1840" height="777" alt="Image" src="https://github.com/user-attachments/assets/3232f946-62a0-4f54-866c-43c3ea1adb5a" />
+<img width="2308" height="685" alt="Image" src="https://github.com/user-attachments/assets/335bddba-67d5-42a7-bbe8-9c78f891ad86" />
+
+## 💡 1. プロジェクト概要
+
+本プロジェクトは、太陽光発電の効率向上と電力制御機能を組み合わせたIoTベースのエネルギー管理システムです。
+
+従来の固定型太陽光パネルは、太陽の移動や周辺の障害物による照度変化に対応できず、発電効率が低下するという課題がありました。  
+これを解決するため、CDSセンサーに基づく太陽光追跡機能を実装するとともに、エネルギーを効率的に管理するための機能として、パネル関連情報のリアルタイムサーバー保存、スマートコンセント制御、LCDによる可視化UIを含む統合エネルギー管理システムを構築しました。
+
+### 📍 システム全体構成
+<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/43fa549c-5ee2-49ef-9705-b3aec7b91486" />
+
+- **STM32 Nucleo-F411RE**
+  - 8つのCDSセンサー入力
+  - 太陽光パネルの自動回転（ステップモーター）
+  - Solarセンサーに基づく発電量測定
+  - Wi-Fi（ESPモジュール）経由でのRaspberry Piサーバーへのデータ送信
+
+- **Raspberry Pi 5 (サーバー)**
+  - ソケットサーバー（iot_server.c）
+  - MariaDBへのデータ保存
+  - Bluetooth経由でのArduinoとのデータ送受信
+
+- **Arduino UNO**
+  - パネル方向 / 発電量 / プラグ状態のLCD表示
+  - ユーザーによるプラグON/OFF制御（リレー）
+  - Bluetooth経由でのコマンド受信
+
+### 🔗 通信構造 (Communication Structure)
+- **STM32 ↔ Wi-Fi ↔ Raspberry Pi**
+- **Arduino ↔ Bluetooth ↔ Raspberry Pi**
+
+---
+
+## 🛠 2. 技術スタック
+
+### Hardware
+![RaspberryPi](https://img.shields.io/badge/Hardware-RaspberryPi5-A22846?style=for-the-badge&logo=raspberrypi&logoColor=white)  
+![JetsonNano](https://img.shields.io/badge/Hardware-Jetson%20Nano-76B041?style=for-the-badge&logo=nvidia&logoColor=white)  
+![IMU Sensor](https://img.shields.io/badge/Hardware-IMU%20Sensor-FF9900?style=for-the-badge&logo=generic&logoColor=white)
+
+### Software / Languages
+![Python](https://img.shields.io/badge/Language-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  
+![OpenVINO](https://img.shields.io/badge/Framework-OpenVINO-0078D4?style=for-the-badge&logo=intel&logoColor=white)  
+![PyTorch](https://img.shields.io/badge/Framework-PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)  
+![YOLO](https://img.shields.io/badge/Model-YOLOv8-FF2B2B?style=for-the-badge&logo=github&logoColor=white)  
+![EfficientNet](https://img.shields.io/badge/EfficientNet-B3-FF6F00?style=for-the-badge&logo=google&logoColor=white)  
+![MoveNet](https://img.shields.io/badge/Model-MoveNet-03A9F4?style=for-the-badge&logo=google&logoColor=white)  
+![MQTT](https://img.shields.io/badge/Protocol-MQTT-00B5A1?style=for-the-badge&logo=cloudsmith&logoColor=white)  
+![OpenCV](https://img.shields.io/badge/Library-OpenCV-5C3A00?style=for-the-badge&logo=opencv&logoColor=white)  
+![MariaDB](https://img.shields.io/badge/Database-MariaDB-003B57?style=for-the-badge&logo=mariadb&logoColor=white)  
+![PyQt6](https://img.shields.io/badge/Framework-PyQt6-41C1C1?style=for-the-badge&logo=python&logoColor=white)
+
+---
+
+## ⭐ 3. 主要機能
+
+### 1) STM32 — 太陽光パネルの自動追跡およびセンサーデータ送信
+- 8つのCDSセンサーによる光の強度測定
+- 最も明るい方向へのパネル自動回転
+- Solarセンサーによる発電量（mV）の測定
+- Wi-Fi（ESPモジュール）を経由したRaspberry Piへのリアルタイム送信
+- サーバーからの要求コマンドに基づいた周期的なデータ更新
+
+<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/78693961-5826-4d20-9175-7829c63f153f" />
+
+### 2) Raspberry Pi 5 — IoTサーバー + データベース保存
+- **iot_server.c**
+  - マルチクライアントソケット接続
+  - ID/PWベースの認証処理
+  - メッセージルーティング (ALLMSG、特定IDへの送信)
+
+- **sql_client.c**
+  - 「[LT_STM_SQL]SENSOR@…」パケットのパース
+  - MariaDB（sensorテーブル）へのリアルタイムINSERT
+
+- **bt_client.c**
+  - Bluetooth HC-06モジュールの使用
+  - Arduinoへのコマンド転送
+  - Arduinoの状態を再受信しサーバーへ転送
+
+<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/df6e9a35-0a65-4247-82fc-e0819f64ae56" />
+<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/64098ebe-fb36-40ef-9fb6-705e0fad388c" />
+
+### 3) Arduino UNO — LCD UI + スマートプラグ制御
+- Raspberry Pi → Bluetooth Classicからデータを受信
+- LCDにパネル方向、発電量、プラグ状態を表示
+- ユーザーボタン入力によるプラグのON/OFF
+- リレー制御 + 状態をRaspberry Piに返信しDB更新フローを維持
+
+<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/0c44df98-3c01-47f0-9a35-7bc1c6404dd3" />
+
+---
+
+## 👨‍💻 4. 担当役割と貢献
+
+### 1) Raspberry Pi クライアントコード(iot_client系) 開発
+- サーバーと通信するiot_clientクライアントプログラムの実装
+- メッセージ送受信のスレッドベース構造（send_msg / recv_msg）の分析と改善
+- ユーザー入力に基づく制御コマンド送信機能の開発
+- Bluetooth → Arduinoへ転送されるメッセージフローの検証
+- パケットフォーマット（ [ID]MSG ）構造の理解および通信テストの実施
+
+### 2) Arduino UNO — UI表示およびユーザー操作ロジック全体の実現
+#### ① LCD表示システムの実装
+- パネル方向 / 発電量 / プラグ状態のリアルタイム表示
+- Bluetooth (HC-06) メッセージに基づくUI更新
+- データ更新時のLCD残像除去および部分的な更新処理
+
+#### ② Bluetooth (HC-06) メッセージ処理
+- Raspberry Piから送信される文字列コマンドのパース（解析）
+- 状態変化反映後、即時のLCD更新
+- 接続エラー、データ破損への対応ロジック構成
+
+#### ③ リレーに基づくスマートプラグ制御
+- ユーザーボタン入力処理
+- プラグのON/OFF動作制御
+- 状態をRaspberry Piへ再送信し、DB更新フローを維持
+
+#### ④ 全体制御パイプラインの構築
+- 「受信 → 処理 → LCD表示 → リレー制御 → 状態再送信」という全体のフローを開発
+- Arduinoをユーザーインターフェースの中核デバイスとして完成
+
+---
+
+## 🎯 5. トラブルシューティング
+
+### 1) データ送信中のステップモーター停止現象
+- 原因: Wi-Fi送信（ESP）ルーチンがブロッキングで動作していたため
+- 解決策: TIM4に基づくノンブロッキングステップモーター制御構造の実装
+- 結果: モーター回転の安定性を確保
+
+### 2) ステップモーター回転時の電圧降下 → CDS値の一時的な低下
+- 原因: モーター駆動時の瞬間的な電流ピーク → ADCレールの変動
+- 解決策: モーター電源とMCU/センサー電源を完全に分離
+- 結果: CDS値のドロップ現象を解決
+
+### 3) LCD残像（ゴースト）の発生
+- 原因: 文字列の長さ変化により、以前のテキストの一部が残存
+- 解決策:
+  - lcd.clear()の繰り返し呼び出しを避ける
+  - 部分更新構造の導入（変更されたラインのみを更新）
+  - 空白パディングによる残像除去
+- 結果: LCD画面がクリアに保たれ、表示速度が向上
+
+---
+
+## 📚 6. 学んだこと
+
+- Arduino UI設計およびデバイス制御（リレー）の全体的な実装経験の獲得
+- サーバー → クライアント → MCUへとつながるIoTデータフローの構造的な理解
+- 異機種デバイス間の通信フローを自ら構築することで、IoTシステムアーキテクチャの感覚が向上
+- センサー、サーバー、UIを統合する過程で、実際のハードウェアデバッグ能力が強化
+---
