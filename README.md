@@ -338,8 +338,12 @@ Smart Solar Tracking & Power Control System
 - 異機種デバイス間の通信フローを自ら構築することで、IoTシステムアーキテクチャの感覚が向上
 - センサー、サーバー、UIを統合する過程で、実際のハードウェアデバッグ能力が強化
 
+---
+
 <div align="center">
 <a href="#korean">⬆️ 韓国語バージョン으로 돌아가기 (Go back to Korean Version) ⬆️</a>
 </div>
 
 </div>
+
+---
