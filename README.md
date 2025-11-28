@@ -1,3 +1,15 @@
+
+| [Korean 🇰🇷](#korean) | [Japanese 🇯🇵](#japanese) |
+| :---: | :---: |
+
+</div>
+
+---
+
+<div id="korean">
+
+### 🇰🇷 Korean Version
+
 # 🌞 빛 추적 스마트 전력 제어 시스템  
 **Smart Solar Tracking & Power Control System**
 <img width="1840" height="777" alt="Image" src="https://github.com/user-attachments/assets/3232f946-62a0-4f54-866c-43c3ea1adb5a" />
@@ -155,3 +167,15 @@
 - 센서, 서버, UI를 통합하는 과정에서 실제 하드웨어 디버깅 능력 강화  
 
 ---
+
+<div align="center">
+<a href="#japanese">⬇️ 日本語バージョンへ移動 (Go to Japanese Version) ⬇️</a>
+</div>
+
+</div>
+
+---
+
+<div id="japanese">
+
+### 🇯🇵 Japanese Version
