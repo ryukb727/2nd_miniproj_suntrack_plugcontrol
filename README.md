@@ -343,4 +343,3 @@ Smart Solar Tracking & Power Control System
 </div>
 
 </div>
----
