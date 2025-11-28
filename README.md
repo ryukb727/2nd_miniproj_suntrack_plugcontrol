@@ -20,7 +20,7 @@
 빛 추적 스마트 전력 제어 시스템은 태양광 발전 효율을 높이고 전력 제어 기능을 결합한 IoT 기반 에너지 관리 프로젝트입니다.
 
 기존 고정형 태양광 패널은 태양의 이동이나 주변 장애물에 따라 조도 변화에 대응하지 못해 발전 효율이 떨어집니다.  
-이를 해결하기 위해 **CDS 센서 기반 태양광 추적**하는 기능을 구현하는 한편, 효과적인 에너지 관리를 위해 발전 관련 정보 **실시간 서버 저장**, **스마트 플러그 제어**, **LCD 시각화 UI** 기능을 하나의 시스템으로 구축했습니다.
+이를 해결하기 위해 **CDS 센서 기반 태양광 추적** 기능을 구현하는 한편, 효과적으로 에너지를 관리할 수 있도록 패널 관련 정보 **실시간 서버 저장**, **스마트 콘센트 제어**, **LCD 시각화 UI** 기능을 포함하는 통합 에너지 관리 시스템을 구축했습니다.
 
 
 ### 📍 전체 시스템 구성
@@ -55,82 +55,7 @@
 ![STM32](https://img.shields.io/badge/MCU-STM32F411RE-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white)
 ![Arduino](https://img.shields.io/badge/Board-Arduino%20UNO-00979D?style=for-the-badge&logo=arduino&logoColor=white)
 ![RaspberryPi](https://img.shields.io/badge/SBC-Raspberry%20Pi%205-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white)
-![WiFi](https://img.shields.io/badge/Module-ESP%20WiFi-1E90FF?style=for-the-badge)
-![Bluetooth](https://img.shields.io/badge/Wireless-Bluetooth-3A75C4?style=for-the-badge&logo=bluetooth&logoColor=white)
-![LCD](https://img.shields.io/badge/Display-I2C%20LCD-1E90FF?style=for-the-badge)
-![Relay](https://img.shields.io/badge/Output-Relay%20Module-FFB400?style=for-the-badge)
-
-### Software / Languages  
-![C](https://img.shields.io/badge/Language-C-00599C?style=for-the-badge&logo=c&logoColor=white)
-![MariaDB](https://img.shields.io/badge/DB-MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
-![Linux](https://img.shields.io/badge/Server-Linux%20Socket%20Programming-333333?style=for-the-badge)
-![Bluetooth](https://img.shields.io/badge/Protocol-Bluetooth-3A75C4?style=for-the-badge)
-![I2C](https://img.shields.io/badge/Bus-I2C-1E90FF?style=for-the-badge)
-![UART](https://img.shields.io/badge/Bus-UART-FF5722?style=for-the-badge)
-![ADC](https://img.shields.io/badge/Input-ADC%20Sensors-A2C93A?style=for-the-badge)
-
----
-
-## ⭐ 3. 주요 기능
-
-### 1) STM32 — 태양광 패널 자동 추적 및 센서 데이터 송신
-- 8개 CDS 센서로 빛의 강도 측정
-- 가장 밝은 방향으로 패널 자동 회전
-- Solar 센서로 발전량(mV) 측정
-- Wi-Fi(ESP 모듈)로 Raspberry Pi에 실시간 송신
-- 센서 요청 명령에 따라 주기적 데이터 업데이트
-<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/78693961-5826-4d20-9175-7829c63f153f" />
-
-### 2) Raspberry Pi 5 — IoT 서버 + 데이터베이스 저장
-- **iot_server.c**
-  - 멀티 클라이언트 소켓 연결
-  - ID/PW 기반 인증 처리
-  - 메시지 라우팅 (ALLMSG, 특정 ID 전송)
-
-- **sql_client.c**
-  - “[LT_STM_SQL]SENSOR@…” 패킷 파싱
-  - MariaDB(sensor 테이블)에 실시간 INSERT
-
-- **bt_client.c**
-  - Bluetooth HC-06 모듈 사용
-  - Arduino에 명령 전달
-  - Arduino 상태 재수신하여 서버로 전달
-<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/df6e9a35-0a65-4247-82fc-e0819f64ae56" />
-<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/64098ebe-fb36-40ef-9fb6-705e0fad388c" />
-
-### 3) Arduino UNO — LCD UI + 스마트 플러그 제어
-- Raspberry Pi → Bluetooth Classic으로 데이터 수신
-- LCD에 패널 방향, 발전량, 플러그 상태 출력
-- 사용자 버튼 입력으로 플러그 ON/OFF
-- 릴레이 제어 + 상태를 Raspberry Pi로 다시 송신
-<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/0c44df98-3c01-47f0-9a35-7bc1c6404dd3" />
-
----
-
-## 👨‍💻 4. 담당 역할
-
-### 1) Raspberry Pi **클라이언트 코드(iot_client 계열)** 개발
-- 서버와 통신하는 iot_client 클라이언트 프로그램 구현
-- 메시지 송·수신 스레드 기반 구조(send_msg / recv_msg) 분석 및 개선
-- 사용자 입력 기반 제어 명령 송신 기능 개발
-- Bluetooth → Arduino로 전달되는 메시지 흐름 검증
-- 패킷 포맷( [ID]MSG ) 구조 이해 및 통신 테스트 수행
-
-### 2) Arduino UNO — **UI 출력 & 사용자 조작 로직 전체 구현**
-
-#### ① LCD 출력 시스템 구현
-- 패널 방향 / 발전량 / 플러그 상태 실시간 표시
-- **Bluetooth (HC-06)** 메시지 기반 UI 갱신
-- 데이터 갱신 시 LCD 잔상 제거 및 부분 업데이트 처리
-
-#### ② Bluetooth (HC-06) 메시지 처리
-- Raspberry Pi에서 전송되는 문자열 명령 파싱
-- 상태 변화 반영 후 즉시 LCD 업데이트
-- 연결 오류, 데이터 깨짐 대응 로직 구성
-
-#### ③ 릴레이 기반 스마트 플러그 제어
-- 사용자 버튼 입력 처리
-- 플러그 ON/OFF 동작 제어
+![WiFi](h트 ON/OFF 동작 제어
 - 상태를 다시 Raspberry Pi에 전송해 DB 갱신 흐름 유지
 
 #### ④ 전체 제어 파이프라인 구축
