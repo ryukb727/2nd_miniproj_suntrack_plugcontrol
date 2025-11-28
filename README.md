@@ -1,6 +1,9 @@
 # 🌞 빛 추적 스마트 전력 제어 시스템  
 **Smart Solar Tracking & Power Control System**
-
+![Image](https://github.com/user-attachments/assets/80a95308-9922-466e-92a1-ce06e72ec58f)
+![Image](https://github.com/user-attachments/assets/df89fdf7-1ff2-40e6-a1a3-9b0afc427ea3)
+<img width="1455" height="805" alt="Image" src="https://github.com/user-attachments/assets/b53b6157-e69a-470a-b9e5-282e7c4cb7c7" />
+<img width="1104" height="651" alt="Image" src="https://github.com/user-attachments/assets/ae98a460-ed6f-43a9-b95d-f49705d6f7d4" />
 ---
 
 ## 💡 1. 프로젝트 개요
@@ -11,6 +14,7 @@
 
 
 ### 📍 전체 시스템 구성
+![Image](https://github.com/user-attachments/assets/6c440284-15ff-4e11-83c2-23765f18e06b)
 
 #### **STM32 Nucleo-F411RE**
 - 8개의 CDS 센서 입력
@@ -65,6 +69,7 @@
 - Solar 센서로 발전량(mV) 측정
 - Wi-Fi(ESP 모듈)로 Raspberry Pi에 실시간 송신
 - 센서 요청 명령에 따라 주기적 데이터 업데이트
+![Image](https://github.com/user-attachments/assets/4a2f4791-a13a-417f-a352-365a4f50dd0b)
 
 ### 2) Raspberry Pi 5 — IoT 서버 + 데이터베이스 저장
 **iot_server.c**
