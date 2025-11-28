@@ -14,18 +14,18 @@
 ### 📍 전체 시스템 구성
 <img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/43fa549c-5ee2-49ef-9705-b3aec7b91486" />
 
-#### - **STM32 Nucleo-F411RE**
+- #### **STM32 Nucleo-F411RE**
   - 8개의 CDS 센서 입력
   - 태양광 패널 자동 회전(스텝모터)
   - Solar 센서 기반 발전량 측정
   - Wi-Fi(ESP 모듈)로 Raspberry Pi 서버에 데이터 송신
 
-#### - **Raspberry Pi 5 (서버)**
+- #### **Raspberry Pi 5 (서버)**
   - 소켓 서버(iot_server.c)
   - MariaDB 데이터 저장
   - **Bluetooth**로 Arduino와 데이터 송수신
 
-#### - **Arduino UNO**
+- #### **Arduino UNO**
   - 패널 방향 / 발전량 / 플러그 상태 LCD 출력
   - 사용자 플러그 ON/OFF 제어(릴레이)
   - Bluetooth로로 명령 수신
