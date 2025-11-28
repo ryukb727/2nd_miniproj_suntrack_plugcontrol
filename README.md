@@ -14,7 +14,7 @@
 
 
 ### 📍 전체 시스템 구성
-![Image](https://github.com/user-attachments/assets/6c440284-15ff-4e11-83c2-23765f18e06b)
+<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/43fa549c-5ee2-49ef-9705-b3aec7b91486" />
 
 #### **STM32 Nucleo-F411RE**
 - 8개의 CDS 센서 입력
