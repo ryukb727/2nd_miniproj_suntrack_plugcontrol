@@ -69,7 +69,7 @@
 - Solar 센서로 발전량(mV) 측정
 - Wi-Fi(ESP 모듈)로 Raspberry Pi에 실시간 송신
 - 센서 요청 명령에 따라 주기적 데이터 업데이트
-![Image](https://github.com/user-attachments/assets/4a2f4791-a13a-417f-a352-365a4f50dd0b)
+<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/78693961-5826-4d20-9175-7829c63f153f" />
 
 ### 2) Raspberry Pi 5 — IoT 서버 + 데이터베이스 저장
 **iot_server.c**
@@ -85,13 +85,15 @@
 - Bluetooth HC-06 모듈 사용
 - Arduino에 명령 전달
 - Arduino 상태 재수신하여 서버로 전달
+<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/df6e9a35-0a65-4247-82fc-e0819f64ae56" />
+<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/64098ebe-fb36-40ef-9fb6-705e0fad388c" />
 
 ### 3) Arduino UNO — LCD UI + 스마트 플러그 제어
 - Raspberry Pi → Bluetooth Classic으로 데이터 수신
 - LCD에 패널 방향, 발전량, 플러그 상태 출력
 - 사용자 버튼 입력으로 플러그 ON/OFF
 - 릴레이 제어 + 상태를 Raspberry Pi로 다시 송신
-
+<img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/0c44df98-3c01-47f0-9a35-7bc1c6404dd3" />
 ---
 
 ## 👨‍💻 4. 담당 역할
