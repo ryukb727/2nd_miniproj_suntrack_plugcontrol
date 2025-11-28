@@ -9,6 +9,7 @@
 기존 고정형 태양광 패널은 태양의 이동이나 주변 장애물에 따라 조도 변화에 대응하지 못해 발전 효율이 떨어집니다.  
 이를 해결하기 위해 **CDS 센서 기반 태양광 추적**, **실시간 서버 저장**, **스마트 플러그 제어**, **LCD 시각화 UI** 기능을 하나의 시스템으로 구축했습니다.
 
+
 ### 📍 전체 시스템 구성
 
 #### **STM32 Nucleo-F411RE**
@@ -27,6 +28,7 @@
 - 사용자 플러그 ON/OFF 제어(릴레이)
 - Bluetooth로로 명령 수신
 
+
 ### 🔗 통신 구조
 - STM32 ↔ **Wi-Fi** ↔ Raspberry Pi  
 - Arduino ↔ **Bluetooth** ↔ Raspberry Pi
@@ -40,7 +42,7 @@
 ![Arduino](https://img.shields.io/badge/Board-Arduino%20UNO-00979D?style=for-the-badge&logo=arduino&logoColor=white)
 ![RaspberryPi](https://img.shields.io/badge/SBC-Raspberry%20Pi%205-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white)
 ![WiFi](https://img.shields.io/badge/Module-ESP%20WiFi-1E90FF?style=for-the-badge)
-![Bluetooth](https://img.shields.io/badge/Wireless-Bluetooth%20Classic-3A75C4?style=for-the-badge&logo=bluetooth&logoColor=white)
+![Bluetooth](https://img.shields.io/badge/Wireless-Bluetooth-3A75C4?style=for-the-badge&logo=bluetooth&logoColor=white)
 ![LCD](https://img.shields.io/badge/Display-I2C%20LCD-1E90FF?style=for-the-badge)
 ![Relay](https://img.shields.io/badge/Output-Relay%20Module-FFB400?style=for-the-badge)
 
@@ -48,7 +50,7 @@
 ![C](https://img.shields.io/badge/Language-C-00599C?style=for-the-badge&logo=c&logoColor=white)
 ![MariaDB](https://img.shields.io/badge/DB-MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
 ![Linux](https://img.shields.io/badge/Server-Linux%20Socket%20Programming-333333?style=for-the-badge)
-![BluetoothClassic](https://img.shields.io/badge/Protocol-Bluetooth%20RFCOMM-3A75C4?style=for-the-badge)
+![Bluetooth](https://img.shields.io/badge/Protocol-Bluetooth-3A75C4?style=for-the-badge)
 ![I2C](https://img.shields.io/badge/Bus-I2C-1E90FF?style=for-the-badge)
 ![UART](https://img.shields.io/badge/Bus-UART-FF5722?style=for-the-badge)
 ![ADC](https://img.shields.io/badge/Input-ADC%20Sensors-A2C93A?style=for-the-badge)
