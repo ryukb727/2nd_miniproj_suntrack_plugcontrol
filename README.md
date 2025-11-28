@@ -3,7 +3,7 @@
 ![Image](https://github.com/user-attachments/assets/80a95308-9922-466e-92a1-ce06e72ec58f)
 ![Image](https://github.com/user-attachments/assets/df89fdf7-1ff2-40e6-a1a3-9b0afc427ea3)
 <img width="1455" height="805" alt="Image" src="https://github.com/user-attachments/assets/b53b6157-e69a-470a-b9e5-282e7c4cb7c7" />
-<img width="1104" height="651" alt="Image" src="https://github.com/user-attachments/assets/ae98a460-ed6f-43a9-b95d-f49705d6f7d4" />
+<img width="720" height="425" alt="Image" src="https://github.com/user-attachments/assets/ae98a460-ed6f-43a9-b95d-f49705d6f7d4" />
 ---
 
 ## 💡 1. 프로젝트 개요
