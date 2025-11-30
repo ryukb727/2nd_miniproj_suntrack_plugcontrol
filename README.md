@@ -29,7 +29,7 @@
 - #### **STM32 Nucleo-F411RE**
   - 8개의 CDS 센서 입력
   - 태양광 패널 자동 회전(스텝모터)
-  - Solar 센서 기반 발전량 측정
+  - 태양광 패널 전압 측정
   - Wi-Fi(ESP 모듈)로 Raspberry Pi 서버에 데이터 송신
 
 - #### **Raspberry Pi 5 (서버)**
@@ -40,7 +40,7 @@
 - #### **Arduino UNO**
   - 패널 방향 / 발전량 / 콘센트 상태 LCD 출력
   - 사용자 콘센트 ON/OFF 제어(릴레이)
-  - Bluetooth로로 명령 수신
+  - Bluetooth로 명령 수신
 
 
 ### 🔗 통신 구조
@@ -76,8 +76,8 @@
 ### 1) STM32 — 태양광 패널 자동 추적 및 센서 데이터 송신
 - 8개 CDS 센서로 빛의 강도 측정
 - 가장 밝은 방향으로 패널 자동 회전
-- Solar 센서로 발전량(mV) 측정
-- Wi-Fi(ESP 모듈)로 Raspberry Pi에 실시간 송신
+- 태양광 패널 전압 측정
+- Wi-Fi(ESP 모듈)로 Raspberry Pi에 실시간 정보 송신
 - 센서 요청 명령에 따라 주기적 데이터 업데이트
 <img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/78693961-5826-4d20-9175-7829c63f153f" />
 
@@ -98,10 +98,10 @@
 <img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/df6e9a35-0a65-4247-82fc-e0819f64ae56" />
 <img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/64098ebe-fb36-40ef-9fb6-705e0fad388c" />
 
-### 3) Arduino UNO — LCD UI + 스마트 플러그 제어
-- Raspberry Pi → Bluetooth Classic으로 데이터 수신
-- LCD에 패널 방향, 발전량, 플러그 상태 출력
-- 사용자 버튼 입력으로 플러그 ON/OFF
+### 3) Arduino UNO — LCD UI + 스마트 콘센트 제어
+- Raspberry Pi → Bluetooth로 데이터 수신
+- LCD에 패널 방향, 전압, 콘센트 상태 출력
+- 사용자 버튼 입력으로 콘센트 ON/OFF
 - 릴레이 제어 + 상태를 Raspberry Pi로 다시 송신
 <img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/0c44df98-3c01-47f0-9a35-7bc1c6404dd3" />
 
@@ -119,7 +119,7 @@
 ### 2) Arduino UNO — **UI 출력 & 사용자 조작 로직 전체 구현**
 
 #### ① LCD 출력 시스템 구현
-- 패널 방향 / 발전량 / 플러그 상태 실시간 표시
+- 패널 방향 / 전압 / 콘센트 상태 실시간 표시
 - **Bluetooth (HC-06)** 메시지 기반 UI 갱신
 - 데이터 갱신 시 LCD 잔상 제거 및 부분 업데이트 처리
 
@@ -128,9 +128,9 @@
 - 상태 변화 반영 후 즉시 LCD 업데이트
 - 연결 오류, 데이터 깨짐 대응 로직 구성
 
-#### ③ 릴레이 기반 스마트 플러그 제어
+#### ③ 릴레이 기반 스마트 콘센트 제어
 - 사용자 버튼 입력 처리
-- 플러그 ON/OFF 동작 제어
+- 콘센트 ON/OFF 동작 제어
 - 상태를 다시 Raspberry Pi에 전송해 DB 갱신 흐름 유지
 
 #### ④ 전체 제어 파이프라인 구축
@@ -199,7 +199,7 @@ Smart Solar Tracking & Power Control System
 - **STM32 Nucleo-F411RE**
   - 8つのCDSセンサー入力
   - 太陽光パネルの自動回転（ステップモーター）
-  - Solarセンサーに基づく発電量測定
+  - 太陽光パネルから電圧測定
   - Wi-Fi（ESPモジュール）経由でのRaspberry Piサーバーへのデータ送信
 
 - **Raspberry Pi 5 (サーバー)**
@@ -244,7 +244,7 @@ Smart Solar Tracking & Power Control System
 ### 1) STM32 — 太陽光パネルの自動追跡およびセンサーデータ送信
 - 8つのCDSセンサーによる光の強度測定
 - 最も明るい方向へのパネル自動回転
-- Solarセンサーによる発電量（mV）の測定
+- 太陽光パネルから電圧測定
 - Wi-Fi（ESPモジュール）を経由したRaspberry Piへのリアルタイム送信
 - サーバーからの要求コマンドに基づいた周期的なデータ更新
 
@@ -269,7 +269,7 @@ Smart Solar Tracking & Power Control System
 <img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/64098ebe-fb36-40ef-9fb6-705e0fad388c" />
 
 ### 3) Arduino UNO — LCD UI + スマートプラグ制御
-- Raspberry Pi → Bluetooth Classicからデータを受信
+- Raspberry Pi → Bluetoothからデータを受信
 - LCDにパネル方向、発電量、プラグ状態を表示
 - ユーザーボタン入力によるプラグのON/OFF
 - リレー制御 + 状態をRaspberry Piに返信しDB更新フローを維持
