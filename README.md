@@ -340,7 +340,7 @@ Smart Solar Tracking & Power Control System
 ---
 
 <div align="center">
-<a href="#korean">⬆️ 韓国語バージョン으로 돌아가기 (Go back to Korean Version) ⬆️</a>
+<a href="#korean">⬆️ 한국어 버전으로 돌아가기 (Go back to Korean Version) ⬆️</a>
 </div>
 
 </div>
