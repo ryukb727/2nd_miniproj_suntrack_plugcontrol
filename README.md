@@ -17,9 +17,9 @@
 ---
 
 ## 💡 1. 프로젝트 개요
-빛 추적 스마트 전력 제어 시스템은 태양광 발전 효율을 높이고 전력 제어 기능을 결합한 IoT 기반 에너지 관리 프로젝트입니다.
+빛 추적 스마트 전력 제어 시스템은 빛 추적 태양패널로 발전 효율을 높이고 스마트 콘센트로 전력을 제어하는 IoT 기반 에너지 관리 프로젝트입니다.
 
-기존 고정형 태양광 패널은 태양의 이동이나 주변 장애물에 따라 조도 변화에 대응하지 못해 발전 효율이 떨어집니다.  
+기존 고정형 태양광 패널은 태양의 이동이나 주변 장애물에 따른 조도 변화에 대응하지 못해 발전 효율이 떨어집니다.  
 이를 해결하기 위해 **CDS 센서 기반 태양광 추적** 기능을 구현하는 한편, 효과적으로 에너지를 관리할 수 있도록 패널 관련 정보 **실시간 서버 저장**, **스마트 콘센트 제어**, **LCD 시각화 UI** 기능을 포함하는 통합 에너지 관리 시스템을 구축했습니다.
 
 
@@ -35,10 +35,10 @@
 - #### **Raspberry Pi 5 (서버)**
   - 소켓 서버(iot_server.c)
   - MariaDB 데이터 저장
-  - **Bluetooth**로 Arduino와 데이터 송수신
+  - Bluetooth로 Arduino와 데이터 송수신
 
 - #### **Arduino UNO**
-  - 패널 방향 / 발전량 / 콘센트 상태 LCD 출력
+  - 패널 방향 / 패널 전압 / 콘센트 상태 LCD 출력
   - 사용자 콘센트 ON/OFF 제어(릴레이)
   - Bluetooth로 명령 수신
 
@@ -78,7 +78,6 @@
 - 가장 밝은 방향으로 패널 자동 회전
 - 태양광 패널 전압 측정
 - Wi-Fi(ESP 모듈)로 Raspberry Pi에 실시간 정보 송신
-- 센서 요청 명령에 따라 주기적 데이터 업데이트
 <img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/78693961-5826-4d20-9175-7829c63f153f" />
 
 ### 2) Raspberry Pi 5 — IoT 서버 + 데이터베이스 저장
@@ -161,7 +160,7 @@
 ---
 
 ## 📚 6. 배운 점  
-- Arduino UI 설계 및 장치 제어(릴레이) 전체 구현 경험 확보  
+- Arduino UI 설계 및 장치 제어(릴레이) 전체 구현 경험  
 - 서버 → 클라이언트 → MCU로 이어지는 IoT 데이터 흐름의 구조적 이해  
 - 이기종 디바이스 간 통신 흐름을 직접 구축하며 IoT 시스템 아키텍처 감각 향상  
 - 센서, 서버, UI를 통합하는 과정에서 실제 하드웨어 디버깅 능력 강화  
@@ -213,29 +212,30 @@ Smart Solar Tracking & Power Control System
   - Bluetooth経由でのコマンド受信
 
 ### 🔗 通信構造 (Communication Structure)
-- **STM32 ↔ Wi-Fi ↔ Raspberry Pi**
-- **Arduino ↔ Bluetooth ↔ Raspberry Pi**
+- STM32 ↔ **Wi-Fi** ↔ Raspberry Pi
+- Arduino ↔ **Bluetooth** ↔ Raspberry Pi
 
 ---
 
 ## 🛠 2. 技術スタック
 
-### Hardware
-![RaspberryPi](https://img.shields.io/badge/Hardware-RaspberryPi5-A22846?style=for-the-badge&logo=raspberrypi&logoColor=white)  
-![JetsonNano](https://img.shields.io/badge/Hardware-Jetson%20Nano-76B041?style=for-the-badge&logo=nvidia&logoColor=white)  
-![IMU Sensor](https://img.shields.io/badge/Hardware-IMU%20Sensor-FF9900?style=for-the-badge&logo=generic&logoColor=white)
+### Hardware  
+![STM32](https://img.shields.io/badge/MCU-STM32F411RE-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white)
+![Arduino](https://img.shields.io/badge/Board-Arduino%20UNO-00979D?style=for-the-badge&logo=arduino&logoColor=white)
+![RaspberryPi](https://img.shields.io/badge/SBC-Raspberry%20Pi%205-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white)
+![WiFi](https://img.shields.io/badge/Module-ESP%20WiFi-1E90FF?style=for-the-badge)
+![Bluetooth](https://img.shields.io/badge/Wireless-Bluetooth-3A75C4?style=for-the-badge&logo=bluetooth&logoColor=white)
+![LCD](https://img.shields.io/badge/Display-I2C%20LCD-1E90FF?style=for-the-badge)
+![Relay](https://img.shields.io/badge/Output-Relay%20Module-FFB400?style=for-the-badge)
 
-### Software / Languages
-![Python](https://img.shields.io/badge/Language-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  
-![OpenVINO](https://img.shields.io/badge/Framework-OpenVINO-0078D4?style=for-the-badge&logo=intel&logoColor=white)  
-![PyTorch](https://img.shields.io/badge/Framework-PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)  
-![YOLO](https://img.shields.io/badge/Model-YOLOv8-FF2B2B?style=for-the-badge&logo=github&logoColor=white)  
-![EfficientNet](https://img.shields.io/badge/EfficientNet-B3-FF6F00?style=for-the-badge&logo=google&logoColor=white)  
-![MoveNet](https://img.shields.io/badge/Model-MoveNet-03A9F4?style=for-the-badge&logo=google&logoColor=white)  
-![MQTT](https://img.shields.io/badge/Protocol-MQTT-00B5A1?style=for-the-badge&logo=cloudsmith&logoColor=white)  
-![OpenCV](https://img.shields.io/badge/Library-OpenCV-5C3A00?style=for-the-badge&logo=opencv&logoColor=white)  
-![MariaDB](https://img.shields.io/badge/Database-MariaDB-003B57?style=for-the-badge&logo=mariadb&logoColor=white)  
-![PyQt6](https://img.shields.io/badge/Framework-PyQt6-41C1C1?style=for-the-badge&logo=python&logoColor=white)
+### Software / Languages  
+![C](https://img.shields.io/badge/Language-C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![MariaDB](https://img.shields.io/badge/DB-MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
+![Linux](https://img.shields.io/badge/Server-Linux%20Socket%20Programming-333333?style=for-the-badge)
+![Bluetooth](https://img.shields.io/badge/Protocol-Bluetooth-3A75C4?style=for-the-badge)
+![I2C](https://img.shields.io/badge/Bus-I2C-1E90FF?style=for-the-badge)
+![UART](https://img.shields.io/badge/Bus-UART-FF5722?style=for-the-badge)
+![ADC](https://img.shields.io/badge/Input-ADC%20Sensors-A2C93A?style=for-the-badge)
 
 ---
 
@@ -246,7 +246,6 @@ Smart Solar Tracking & Power Control System
 - 最も明るい方向へのパネル自動回転
 - 太陽光パネルから電圧測定
 - Wi-Fi（ESPモジュール）を経由したRaspberry Piへのリアルタイム送信
-- サーバーからの要求コマンドに基づいた周期的なデータ更新
 
 <img width="960" height="540" alt="Image" src="https://github.com/user-attachments/assets/78693961-5826-4d20-9175-7829c63f153f" />
 
@@ -333,7 +332,7 @@ Smart Solar Tracking & Power Control System
 
 ## 📚 6. 学んだこと
 
-- Arduino UI設計およびデバイス制御（リレー）の全体的な実装経験の獲得
+- Arduino UI設計およびデバイス制御（リレー）の全体的な実装経験
 - サーバー → クライアント → MCUへとつながるIoTデータフローの構造的な理解
 - 異機種デバイス間の通信フローを自ら構築することで、IoTシステムアーキテクチャの感覚が向上
 - センサー、サーバー、UIを統合する過程で、実際のハードウェアデバッグ能力が強化
