@@ -288,7 +288,7 @@ Smart Solar Tracking & Power Control System
 
 ### 2) Arduino UNO — UI表示およびユーザー操作ロジック全体の実現
 #### ① LCD表示システムの実装
-- パネル方向 / 発電量 / プラグ状態のリアルタイム表示
+- パネル方向 / 電圧 / プラグ状態のリアルタイム表示
 - Bluetooth (HC-06) メッセージに基づくUI更新
 - データ更新時のLCD残像除去および部分的な更新処理
 
