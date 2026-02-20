@@ -1,9 +1,3 @@
-/*
-  blue test: 
-  http://www.kccistc.net/
-  작성일 : 2024.03.22
-  작성자 : IoT 임베디드 KSH
-*/
 #include <SoftwareSerial.h>
 #include <LiquidCrystal_I2C.h>
 
