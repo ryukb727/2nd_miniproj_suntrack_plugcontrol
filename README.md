@@ -179,7 +179,7 @@
 
 ### 🇯🇵 Japanese Version
 
-# 🌞 太陽光追跡スマート電力制御システム
+# 🌞 光追跡スマート電力制御システム
 Smart Solar Tracking & Power Control System
 
 <img width="1840" height="777" alt="Image" src="https://github.com/user-attachments/assets/3232f946-62a0-4f54-866c-43c3ea1adb5a" />
